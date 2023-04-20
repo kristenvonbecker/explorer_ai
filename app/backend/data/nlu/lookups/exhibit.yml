@@ -1,0 +1,333 @@
+version: '3.1'
+nlu:
+- lookup: exhibit
+  examples: |
+    - water evaporation
+    - zephyr trio
+    - pi marker
+    - the atmosphere a guide
+    - sip or squirt
+    - a sip of conflict
+    - braided stream
+    - animation tower
+    - buffon 's needles
+    - balancing ball
+    - blood o meter
+    - archimedes
+    - bicycle chain
+    - digital footprints
+    - red phone
+    - disappearing glass rods
+    - giant mirror
+    - aromas y recuerdos
+    - seeing scientifically
+    - what 's hot what 's not
+    - rotting carcass
+    - career criminal
+    - coupled pendulums
+    - sun painting
+    - whispering dishes
+    - live chicken embryos
+    - diffraction shadows
+    - touch the teapot
+    - aeolian landscape
+    - toilet water fountain
+    - cooperative red phone
+    - time to think
+    - walking on gravel
+    - toilet bowl drinking fountain
+    - colored words
+    - cloud chamber
+    - bay bridge model
+    - big magnifier
+    - rock box
+    - ames chairs
+    - disagreeing about color
+    - is it genetic
+    - timepieces solar system
+    - lab illustrations
+    - beach ball blower
+    - colored circles
+    - galaxy03
+    - entangled attraction
+    - fluorescent tube
+    - out quiet yourself
+    - adapting to color
+    - plankton rainbow
+    - too slow to notice
+    - confused sea
+    - tactile dome
+    - the last ocean
+    - toilet drinking fountain
+    - mapping migrations
+    - ir camera
+    - energy from death
+    - bulbs and batteries
+    - anti - gravity mirror
+    - scream into sand
+    - pier piling pivot
+    - unseen stories
+    - rift zone
+    - developing chick embryos
+    - heat camera
+    - creatures from the sea settling plate
+    - small monatomic molecules
+    - soap film painting
+    - the edge makes the difference
+    - color conflicts
+    - spacetime
+    - ice window
+    - bacteriopolis wall
+    - saltscapes
+    - the enchanted tree
+    - mirrorly a window
+    - horse 's tail
+    - circles of magnetism
+    - scent memories
+    - fox walking
+    - drawing board
+    - disappearing act
+    - a pendulum clock
+    - ocean tracks
+    - giant chair
+    - pedal generator
+    - square wheel
+    - all the light you see infinity
+    - the cow game
+    - mood lighting
+    - bicycle wheel gyro
+    - water tornado
+    - trust fountain
+    - time shift
+    - vortex
+    - throw pi
+    - oculus table
+    - tactile harp
+    - cattle game
+    - dice
+    - magnetic sand
+    - coupled resonant pendulums
+    - two ways of seeing yellow
+    - ames room
+    - living colors
+    - prelinger library
+    - human phenomena explainer station
+    - elastotron
+    - noaa buoy
+    - fluttering silk
+    - too slow to see
+    - sweeper 's clock
+    - tinkerer 's clock
+    - blood cells in your eye
+    - chicken eggs
+    - corpuscles in the eye
+    - lariat chain
+    - sky theater
+    - look inside a developing fish
+    - colored shadows
+    - disagreement about color
+    - sun swarm
+    - wall watching bench
+    - duck into a kaleidoscope
+    - albert
+    - tornado
+    - turntable
+    - ice crystals
+    - pinscreen
+    - touch the spring
+    - colored venn diagram
+    - all eyes on me
+    - listening vessels
+    - genetic inheritance
+    - water spinner
+    - capture a moment in time
+    - community garden
+    - circling wave umbrella
+    - can you believe your eyes
+    - still life
+    - the dome
+    - pitch slider
+    - a cell in motion
+    - seeing and listening explainer station
+    - recollections
+    - chicken wire
+    - museum of the moon
+    - toothpick sculpture
+    - interpreting the living systems lab
+    - living on death
+    - pi has your number
+    - library of earth anatomy
+    - kalanchoe
+    - snake pendulum
+    - lumen illusion
+    - cubatron core
+    - 3d cell zoetrope
+    - sound bite
+    - bubble well
+    - bubble sheet
+    - are your cells you
+    - frozen water drop
+    - red blue
+    - illuminated fog
+    - aurora
+    - land water
+    - venn diagram
+    - downhill race
+    - washer game
+    - hela cells
+    - velvet hands
+    - bicycle rope squirter
+    - fog bridge
+    - flock
+    - twins photos
+    - bite o - phone
+    - cardiac myocytes
+    - circuit workbench
+    - spectral meadow
+    - turbulent sea
+    - cloud rings
+    - bay lexicon
+    - big little chair
+    - golden gate bridge
+    - watch water freeze
+    - plant tunes
+    - solar hour benches
+    - chick embryos
+    - heliorama
+    - bacteriopolis
+    - chaotic pendulum
+    - survival game
+    - animation station
+    - green lips
+    - all the flowers are for me turquoise
+    - red green goggles
+    - rolling through the bay
+    - albert 's watching
+    - jardín comunitario
+    - café wall illusion
+    - pendulum snake
+    - magnetic labyrinth
+    - tinkering clock
+    - gray step
+    - glass settling plate
+    - uroborus a snake chasing its tail
+    - your turn counts
+    - fluttering
+    - reaction time 2
+    - magnetic fluid patterns
+    - melodías de plantas
+    - bird in a cage
+    - bronze hand
+    - blood cell scale
+    - zebrafish embryos
+    - button game
+    - everyone is you and me
+    - golden gate bridge motion
+    - big tuning fork
+    - give heart cells a beat
+    - disorted bench
+    - the tree experience
+    - tactile gallery
+    - a drop to drink
+    - spherical reflections
+    - sharing faces
+    - color ball
+    - look into infinity
+    - cows
+    - icy bodies
+    - chromoscope
+    - drinking fountain
+    - pi toss
+    - rotating light
+    - sophisticated shadows
+    - observatory library
+    - coupled resonant pendula
+    - freeloader
+    - becoming horizon
+    - pi search
+    - triple aye lightstick
+    - bacteria wall
+    - moving objects
+    - color splitter
+    - long path diffraction
+    - emotion tracer
+    - christmas tree balls
+    - big chair little chair
+    - drip chamber
+    - dioximoirekinesis
+    - buckyball
+    - aeolian harp
+    - try pi
+    - echo tube
+    - bernoulli blower
+    - velvet harp
+    - sun benches
+    - they 're identical or are they
+    - bay windows
+    - water drop photography
+    - giant clock
+    - jellybean room
+    - raylights
+    - distorted room
+    - blood vessels in your eye
+    - black sand
+    - visitor pulse
+    - bridge light
+    - shaking
+    - machine with concrete
+    - compare yellow leds
+    - pi shrine
+    - glow ball
+    - prisoner 's dilemma
+    - within 15 minutes
+    - pulling together
+    - disappearing rings
+    - teardrop after robert irwin
+    - ice painting
+    - monochromatic room
+    - oscylinderscope
+    - liquid litmus
+    - toothpick roller coaster
+    - bay lexicon columns
+    - prelinger map archive and library
+    - seismograph
+    - bike rope squirter
+    - leaves that sprout plants
+    - creating life with just one parent
+    - black card white card
+    - need based transfer economy
+    - shifting time
+    - chladni singing
+    - giant tuning fork
+    - peacemaker
+    - wave organ
+    - triple aye stick
+    - yellow room
+    - light box
+    - harmonograms
+    - time 2 think
+    - countless colors
+    - flourish bloom
+    - research buoy
+    - praxinoscope tower
+    - stop and start
+    - as one
+    - leaves that sprout
+    - fog bridge 72494
+    - probably chelsea
+    - big wood 300 years of photosynthesis
+    - winogradsky column
+    - pitch twanger
+    - the art of neon
+    - scrapple
+    - responsive heart cells
+    - gray step 1
+    - shadow box
+    - bright black
+    - turbulent orb
+    - anamorphic bench
+    - colored lights
+    - gas model
+    - sky panorama
+    - salt ponds from the sky
+    - giant spherical mirror

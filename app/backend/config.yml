@@ -1,0 +1,36 @@
+recipe: default.v1
+
+language: en
+
+pipeline:
+  - name: WhitespaceTokenizer
+    intent_tokenization_flag: True
+    intent_split_symbol: "+"
+  - name: RegexFeaturizer
+  - name: CountVectorsFeaturizer
+  - name: CountVectorsFeaturizer
+    analyzer: char_wb
+    min_ngram: 1
+    max_ngram: 4
+  - name: LexicalSyntacticFeaturizer
+  - name: DIETClassifier
+    epochs: 30
+    constrain_similarities: True  # what does this do??
+    random_seed: 42
+  - name: EntitySynonymMapper
+  - name: ResponseSelector
+    epochs: 30
+    retrieval_intent: chitchat
+  - name: FallbackClassifier
+    threshold: 0.3
+    ambiguity_threshold: 0.1
+
+policies:
+  - name: RulePolicy
+  - name: MemoizationPolicy
+  - name: UnexpecTEDIntentPolicy
+    max_history: 10
+    epochs: 10
+  - name: TEDPolicy
+    max_history: 10
+    epochs: 10

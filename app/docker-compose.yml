@@ -1,0 +1,46 @@
+version: '3'
+services:
+
+  rasa_server:
+    container_name: "rasa_server"
+    build:
+      context: backend
+    user: root
+    ports:
+      - "5005:5005"
+    expose:
+      - 5005
+
+  action_server:
+    container_name: "action_server"
+    build:
+      context: actions
+    ports:
+      - "5055:5055"
+    expose:
+      - 5055
+
+  web_server:
+    container_name: "web_server"
+    image: nginx
+    depends_on:
+      - "rasa_server"
+      - "action_server"
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: always
+    volumes:
+      - ./web/conf/default.conf:/etc/nginx/conf.d/default.conf
+      - ./web/conf/explorer-ai.chat.conf:/etc/nginx/conf.d/explorer-ai.chat.conf
+      - ./web/conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./web/html:/var/www/html
+      - ./certbot/www:/var/www/certbot
+      - ./certbot/conf:/etc/letsencrypt
+
+  certbot:
+    container_name: "certbot"
+    image: certbot/certbot
+    volumes:
+      - ./certbot/www:/var/www/cerbot:rw
+      - ./certbot/conf:/etc/letsencrypt:rw

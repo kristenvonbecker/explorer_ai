@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<!--    <link rel="icon" type="image/x-icon" href="favicon.ico"/>-->
+    <title>Explorer AI</title>
+    <style>
+        /** CSS RESET **/
+        /* http://meyerweb.com/eric/tools/css/reset/
+         v2.0 | 20110126
+         License: none (public domain)
+        */
+
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, embed,
+        figure, figcaption, footer, header, hgroup,
+        menu, nav, output, ruby, section, summary,
+        time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font: inherit;
+            vertical-align: baseline;
+        }
+
+        /* HTML5 display-role reset for older browsers */
+        article, aside, details, figcaption, figure,
+        footer, header, hgroup, menu, nav, section {
+            display: block;
+        }
+
+        body {
+            line-height: 1;
+        }
+
+        ol, ul {
+            list-style: none;
+        }
+
+        blockquote, q {
+            quotes: none;
+        }
+
+        blockquote:before, blockquote:after,
+        q:before, q:after {
+            content: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        /** END OF CSS RESET **/
+
+        body {
+            --white-color: #f3f4fb;
+            --black-color: black;
+            --grey-color: #5a5255;
+            --pink-color: #ff598f;
+            --blue-color: #01dddd;
+            --green-color: #00bfaf;
+            --orange-color: #fd8a5e;
+            --yellow-color: #f2f399;
+            --darker-green-color: #00988c;
+            font-family: Roboto, sans-serif;
+            background-color: var(--yellow-color);
+        }
+
+        #form {
+            padding: 0.25rem;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            height: 3rem;
+            box-sizing: border-box;
+            background-color: var(--grey-color);
+        }
+
+        #message-input {
+            flex-grow: 1;
+            padding: 0 1rem;
+            border-radius: 2rem;
+            margin: 0.25rem;
+            background-color: var(--white-color);
+        }
+
+        #message-input:focus {
+            outline: none;
+        }
+
+        .button {
+            background: var(--blue-color);
+            border: none;
+            padding: 0 1rem;
+            margin: 0.25rem;
+            border-radius: 3px;
+            outline: none;
+            color: var(--black-color);
+            font: inherit;
+        }
+
+        .button:hover {
+            background: var(--green-color);
+        }
+
+        .button:active {
+            background: var(--darker-green-color);
+        }
+
+        #messages {
+            display: flex;
+            flex-direction: column;
+            padding: 10px 10px 60px 10px;
+        }
+
+        .message {
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            word-wrap: break-word;
+            max-width: calc(100% - 40px - 32px);
+            margin-bottom: 10px;
+        }
+
+        .message_received {
+            background: var(--pink-color);
+            color: var(--black-color);
+            border-bottom-left-radius: 0;
+            align-self: flex-start;
+        }
+
+        .message_sent {
+            color: var(--black-color);
+            background: var(--orange-color);
+            border-bottom-right-radius: 0;
+            align-self: flex-end;
+        }
+
+        .header {
+            background-color: var(--blue-color);
+            color: var(--black-color);
+            text-align: center;
+            padding: 12px;
+        }
+
+        .title {
+            font-size: 23px;
+        }
+
+        .quick-replies {
+            display: flex;
+            align-self: flex-end;
+            height: 2.5rem;
+            box-sizing: border-box;
+        }
+
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <p class="title">Chat with Explorer AI!</p>
+    </header>
+    <div id="messages"></div>
+    <form id="form">
+      <input id="message-input" autocomplete="off" autofocus/>
+      <button class="button">Send</button>
+    </form>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.2/socket.io.js"
+            integrity="sha512-YybopSVjZU0fe8TY4YDuQbP5bhwpGBE/T6eBUEZ0usM72IWBfWrgVI13qfX4V2A/W7Hdqnm7PIOYOwP9YHnICw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+    <script>
+        // Connect to RASA server
+        const socket = io("https://explorer-ai.chat");
+
+        const messages = document.getElementById('messages');
+        const form = document.getElementById('form');
+        const messageInput = document.getElementById('message-input');
+
+        function scrollToBottom() {
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+
+        function appendMessage(msg, type) {
+            const item = document.createElement('div');
+            item.textContent = msg;
+            item.classList.add("message");
+            item.classList.add(`message_${type}`);
+            messages.appendChild(item);
+            scrollToBottom();
+        }
+
+        function appendImage(src, type) {
+            const item = document.createElement('div');
+            item.classList.add("message");
+            item.classList.add(`message_${type}`);
+            const img = document.createElement('img');
+            img.src = src;
+            img.onload = scrollToBottom;
+            item.appendChild(img);
+            messages.appendChild(item);
+        }
+
+        function appendQuickReplies(quickReplies) {
+            const quickRepliesNode = document.createElement('div');
+            quickRepliesNode.classList.add("quick-replies");
+            quickReplies.forEach(quickReply => {
+                const quickReplyDiv = document.createElement('button');
+                quickReplyDiv.innerHTML = quickReply.title;
+                quickReplyDiv.classList.add("button");
+                quickReplyDiv.addEventListener("click", () => {
+                    messages.removeChild(quickRepliesNode);
+                    appendMessage(quickReply.title, "sent");
+                    socket.emit('user_uttered', {
+                        "message": quickReply.payload,
+                    });
+                })
+                quickRepliesNode.appendChild(quickReplyDiv);
+            })
+            messages.appendChild(quickRepliesNode);
+            scrollToBottom();
+        }
+
+        const welcome = "Hello! I'm Explorer AI, a virtual assistant for visitors to the Exploratorium in " +
+                  "San Francisco. I've been trained to answer questions about the Exploratorium's exhibits and the " +
+                  "concepts they illustrate.";
+        const how_help = "How may I assist you?";
+        appendMessage(welcome, "received");
+        appendMessage(how_help, "received");
+
+
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const msg = messageInput.value;
+            if (msg) {
+                socket.emit('user_uttered', {
+                    "message": msg,
+                });
+                messageInput.value = '';
+
+                appendMessage(msg, "sent");
+            }
+        });
+
+        socket.on('connect', function () {
+            console.log("Connected to Socket.io server");
+        });
+
+        socket.on('connect_error', (error) => {
+            // Write any connection errors to the console
+            console.log("Connection to Socket.io FAILED");
+            console.error(error);
+        });
+
+        socket.on('bot_uttered', function (response) {
+            console.log("Bot uttered:", response);
+            if (response.text) {
+                appendMessage(response.text, "received");
+            }
+            if (response.attachment) {
+                appendImage(response.attachment.payload.src, "received");
+            }
+            if (response.quick_replies) {
+                appendQuickReplies(response.quick_replies);
+            }
+        });
+    </script>
+  </body>
+</html>
