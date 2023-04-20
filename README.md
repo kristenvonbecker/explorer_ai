@@ -6,6 +6,8 @@ science, art, and human perception."
 
 **<span style="color:red">Chat with Explorer AI in your web brower!</span>  [explorer-ai.chat](https://explorer-ai.chat)**
 
+---
+
 ### Introduction
 
 Explorer AI is trained to function as a virtual docent to the Exploratorium in San Francisco. That is, it is able to 
@@ -21,6 +23,8 @@ be asked by a patron. In particular, Explorer AI is trained to respond to the fo
   - Get exhibit recommendations (randomly, or given certain criteria)
 
 ![Screenshot of Explorer AI interface](images/screenshot_1.png)
+
+---
 
 ### Modeling
 
@@ -73,6 +77,18 @@ by full TLS support. SSL certificates were obtained through [Let's Encrypt](http
 certificate authority. Code and configs for the web server, as well as static content, can be found in `app/web`.
 - A process for automating the renewal of SSL certificates using [Certbot](https://certbot.eff.org/). The configurations
 for this process can be found in `app/docker-compose.yml` (along with the rest of the network's Docker configuration).
+
+---
+
+### Known issues
+
+- The bot frequenty fails to respond to a user's message (it listens selectively).
+- User intent is often misclassified by the bot (it has a hard time understanding).
+
+To provide feedback about your experience with Explorer AI, please fill out 
+[this form](https://forms.gle/9Y4LFogLvzEKquqL9).
+
+---
 
 ### Future work
 
