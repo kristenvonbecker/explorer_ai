@@ -4,7 +4,7 @@
 [The Exploratorium](https://www.exploratorium.edu/about-us), "a public learning laboratory exploring the world through 
 science, art, and human perception." 
 
-**Chat with Explorer AI in your web brower: [explorer-ai.chat](https://explorer-ai.chat)**
+**<span style="color:red">Chat with Explorer AI in your web brower!</span>  [explorer-ai.chat](https://explorer-ai.chat)**
 
 ### Introduction
 
