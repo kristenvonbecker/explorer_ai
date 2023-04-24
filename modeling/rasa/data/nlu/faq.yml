@@ -1,0 +1,41 @@
+version: "3.1"
+
+nlu:
+
+- intent: faq/ask_what_can_you_do
+  examples: |
+    - what sorts of questions can you answer?
+    - what can you do?
+    - what can i ask you?
+    - what are you trained to do?
+    - what questions do you understand?
+    - what tasks can you perform?
+    - what is your specialty?
+    - what is your job?
+    - what kinds of things can you do?
+    - what knowledge do you have?
+    - what can you help me with?
+    - what am i allowed to ask you?
+    - what do you know how to do?
+
+- intent: faq/ask_who_teacher
+  examples: |
+    - who is training you?
+    - who is your teacher?
+    - who made you?
+    - who is the human behind the bot?
+    - what person trained you?
+    - what is the name of the person who designed you?
+    - who programmed you?
+    - who made you?
+
+- intent: faq/ask_how_learn
+  examples: |
+    - how did you get so smart?
+    - how do you learn?
+    - how did you know that?
+    - how were you trained?
+    - how do you know so much?
+    - where do you get your knowledge?
+    - where do you get your information?
+    - what are your sources of knowledge?

@@ -1,0 +1,11 @@
+version: '3.1'
+
+responses:
+  utter_faq/ask_what_can_you_do:
+  - text: I'm trained to answer your questions about the Exploratorium's exhibits and the natural phenomena that they illustrate.
+  - text: Try asking me a question about an exhibit. For example, "is the Tactile Dome on display?" or "how does the giant concave mirror work?"
+  - text: I can explain concepts like "light", "magnetic field", or "cooperation". Just ask!
+  utter_faq/ask_how_learn:
+  - text: I checked out the info available at exploratorium.edu, and I also like to read the Encyclopedia Britannica. :)
+  utter_faq/ask_who_teacher:
+  - text: Kristen Beck is my teacher. She's still working on improving me.

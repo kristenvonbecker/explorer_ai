@@ -6,10 +6,10 @@ session_config:
 
 intents:
 - chitchat
+- faq
 - affirm
 - deny
-- affirm+thanks
-- deny+thanks
+- welcome
 - stop
 - out_of_scope
 - ask_for_explanation:
@@ -17,9 +17,6 @@ intents:
     - subject
 - ask_fave_exhibit:
     use_entities: []
-- inform_like_exhibit:
-    use_entities:
-    - exhibit
 - ask_about_exhibit:
     use_entities:
     - exhibit
@@ -97,10 +94,6 @@ slots:
     influence_conversation: true
 
 responses:
-  utter_intro:
-  - text: Hello! I'm Explorer AI, a virtual assistant for visitors to the Exploratorium in San Fransisco.
-  utter_what_i_do:
-  - text: I've been trained to answer questions about the Exploratorium's exhibits and the concepts they illustrate.
   utter_great:
   - text: That's great!
   - text: Good to hear.
@@ -122,9 +115,11 @@ responses:
   - text: How else can I be of assistance?
   - text: What else would you like to know?
   utter_what_subject:
-  - text: About which subject?
+  - text: Which subject would you like to know more about?
+  - text: Which concept would you like help understanding?
+  - text: What can I explain for you?
   utter_which_exhibit:
-  - text: Which exhibit?
+  - text: Which exhibit are you referring to?
   utter_found_nothing:
   - text: Sorry, but I wasn't able to find any information about {subject}.
   utter_found_nothing_else:
@@ -140,12 +135,14 @@ responses:
   utter_try_this:
   - text: I don't know how to respond to that. Try something like 'Tell me about electricity.'
   - text: I'm not sure how to respond to that. Try something like 'What's your favorite exhibit at the Exploratorium?'
-  - text: I can't respond to that. Try something like 'Where I can find the Giant Mirror?'
+  - text: I can't respond to that. Try something like 'Where I can find the giant mirror exhibit?'
+  - text: I can't respond to that. Try something like 'Explain the Prisoner's Dilemma to me."
+  utter_ask_rephrase:
+  - text: I didn't understand that. Could you please rephrase?
   utter_default:
-  - text: Sorry, I don't understand. Could you please rephrase that?
+  - text: I didn't understand that. Could you please rephrase?
 
 actions:
-- action_session_start
 - action_get_article_match_ids
 - action_get_exhibit_match_ids
 - action_give_explanation

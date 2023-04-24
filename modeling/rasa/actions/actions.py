@@ -26,28 +26,6 @@ exhibit_intents = ["ask_about_exhibit",
                    ]
 
 
-class ActionSessionStart(Action):
-    def name(self) -> Text:
-        return "action_session_start"
-
-    async def run(self,
-                  dispatcher: CollectingDispatcher,
-                  tracker: Tracker,
-                  domain: DomainDict
-                  ) -> List[Dict[Text, Any]]:
-        intro = domain["responses"]["utter_intro"][0]["text"]
-        what_i_do = domain["responses"]["utter_what_i_do"][0]["text"]
-        how_help = domain["responses"]["utter_how_help"][0]["text"]
-        events = [
-            SessionStarted(),
-            BotUttered(text=intro),
-            BotUttered(text=what_i_do),
-            BotUttered(text=how_help),
-            ActionExecuted("action_listen")
-        ]
-        return events
-
-
 class ActionGetArticleMatchIds(Action):
     def name(self) -> Text:
         return "action_get_article_match_ids"

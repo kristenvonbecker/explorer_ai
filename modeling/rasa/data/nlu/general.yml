@@ -21,6 +21,8 @@ nlu:
     - that's right
     - that sounds good
     - you know it
+    - kind of
+    - kinda
     - correct
     - yip
     - affirm
@@ -30,19 +32,6 @@ nlu:
     - i think so
     - i guess
     - sure
-
-- intent: affirm+thanks
-  examples: |
-    - that's right, thanks
-    - yep, thank you
-    - thanks, that's correct
-    - yes, thanks
-    - indeed, and I appreciate it
-    - indeed, excellent!
-    - that's exactly what i'm looking for
-    - yes indeed, thank you so much
-    - sure, thanks
-    - yes and thanks
 
 - intent: deny
   examples: |
@@ -71,18 +60,8 @@ nlu:
     - i don't like the idea of that
     - not at all
     - absolutely not
-
-- intent: deny+thanks
-  examples: |
-    - no thank you
-    - no thanks
-    - no but thank you anyway
-    - nah, thanks
-    - that's a negative, thanks
-    - nope, but thanks
-    - no, but I appreciate your effort
-    - thanks, but that's not correct
-    - thanks but no
+    - sort of
+    - sorta
 
 - intent: stop
   examples: |
@@ -110,8 +89,21 @@ nlu:
     - I changed my mind
     - quit asking that
     - I don't have a question anymore
+    - I'm done
     - I'd like to stop
     - please quit
+
+- intent: welcome
+  examples: |
+    - you're welcome
+    - no problem
+    - you are very welcome
+    - it's my pleasure
+    - don't mention it
+    - it's no big deal
+    - yep
+    - of course
+    - i got you
 
 - intent: out_of_scope
   examples: |
