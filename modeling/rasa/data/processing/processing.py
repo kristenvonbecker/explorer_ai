@@ -3,7 +3,7 @@ from unidecode import unidecode
 import contractions
 from word2number import w2n
 
-nlp = spacy.load('en_core_web_sm')
+nlp = spacy.load('en_core_web_md')
 
 
 def remove_whitespace(text):

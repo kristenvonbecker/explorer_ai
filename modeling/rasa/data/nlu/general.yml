@@ -20,7 +20,6 @@ nlu:
     - of course
     - that's right
     - that sounds good
-    - you know it
     - kind of
     - kinda
     - correct
@@ -32,6 +31,16 @@ nlu:
     - i think so
     - i guess
     - sure
+    - yep, it sure does
+    - yes indeed
+    - that's perfect
+    - yes, it does
+    - yes, thanks
+    - yep, thank you
+    - yeah, it sure is
+    - yes, i think so
+    - yeah, why not
+    - yep, sure is
 
 - intent: deny
   examples: |
@@ -62,6 +71,15 @@ nlu:
     - absolutely not
     - sort of
     - sorta
+    - no, it does not
+    - nope, it doesn't
+    - nah
+    - that's not it
+    - that's not what i'm looking for
+    - nope, not at all
+    - no, but thanks for trying
+    - no thanks
+    - nope, but thanks anyway
 
 - intent: stop
   examples: |
@@ -101,30 +119,8 @@ nlu:
     - it's my pleasure
     - don't mention it
     - it's no big deal
-    - yep
+    - not a big deal
+    - nothing to mention
     - of course
-    - i got you
-
-- intent: out_of_scope
-  examples: |
-    - what time is it?
-    - what's 2+2?
-    - knock knock
-    - tell me a joke
-    - are you a dog person or a cat person?
-    - what's the weather like?
-    - what languages do you speak?
-    - who trained you?
-    - where do you live?
-    - what's the captial of France?
-    - how many bits are in a byte?
-    - do you like pizza?
-    - what do you look like?
-    - what's your sign?
-    - how old are you?
-    - how many licks does it take to get to the center of a tootsie pop?
-    - is there a god?
-    - what kind of music do you like?
-    - what languages do you speak?
-    - what is your favorite season?
-    - who is the president of the US?
+    - you are welcome
+    - you're so welcome

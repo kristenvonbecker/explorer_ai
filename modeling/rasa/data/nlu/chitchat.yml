@@ -39,6 +39,18 @@ nlu:
     - goodevening
     - howdy
     - what's up?
+    - hey there, my name is [PERSON](PERSON)!
+    - hi, I'm [PERSON](PERSON)
+    - my name is [PERSON](PERSON)
+    - people call me [PERSON](PERSON)
+    - hello, people call me [PERSON](PERSON)
+    - hi, people call me [PERSON](PERSON)
+    - good morning, my name is [PERSON](PERSON)
+    - hello there, this is [PERSON](PERSON)
+    - greetings, people call me [PERSON](PERSON)
+    - hi! you can call me [PERSON](PERSON)
+    - hey there. I call myself [PERSON](PERSON)
+    - please call me [PERSON](PERSON)
 
 - intent: chitchat/ask_mood
   examples: |
@@ -127,8 +139,8 @@ nlu:
     - many thanks
     - i owe you
     - thx
-    - kthx
     - ty
+    - thanks again
 
 - intent: chitchat/bot_challenge
   examples: |
@@ -188,11 +200,12 @@ nlu:
     - i just learned something new
     - very informative
     - super cool
+    - awesome
+    - cool
     - wow, that's fascinating
     - that is so amazing
     - very awesome
-    - i think that's so neat
     - love that
     - love it
-    - i really like that idea
-    - that's great
+    - that's great!
+    - wow, who knew?!

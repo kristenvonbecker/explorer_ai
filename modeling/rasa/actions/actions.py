@@ -1,5 +1,6 @@
 from rasa_sdk.events import SlotSet, SessionStarted, ActionExecuted, BotUttered
 from rasa_sdk import Action, Tracker
+from rasa_sdk import Tracker, ValidationAction
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
 
@@ -24,6 +25,35 @@ exhibit_intents = ["ask_about_exhibit",
                    "ask_where_exhibit",
                    "ask_related_exhibit"
                    ]
+
+
+class ValidateSlots(ValidationAction):
+    def validate_user_name(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        name = next(tracker.get_latest_entity_values("PERSON"), None)
+        last_intent = tracker.latest_message["intent"].get("name")
+        if name and last_intent == "chit_chat/greet":
+            return {"user_name": name}
+        else:
+            return {"user_name": None}
+
+    def validate_name_given(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        name = tracker.get_slot("user_name")
+        if name:
+            return {"name_given": True}
+        else:
+            return {"name_given": False}
 
 
 class ActionGetArticleMatchIds(Action):

@@ -1,0 +1,71 @@
+version: "3.1"
+
+nlu:
+
+- intent: out_of_scope/general
+  examples: |
+    - what time is it?
+    - what's 2+2?
+    - knock knock
+    - tell me a joke
+    - are you a dog person or a cat person?
+    - what's the weather like?
+    - what languages do you speak?
+    - where do you live?
+    - what's the captial of France?
+    - how many bits are in a byte?
+    - what do you look like?
+    - how many licks does it take to get to the center of a tootsie pop?
+    - is there a god?
+    - what languages do you speak?
+    - what is your favorite season?
+    - who is the president of the US?
+    - what's your favorite food?
+    - what's your favorite color?
+    - what's your favorite TV show?
+    - what kind of music do you like?
+    - do you read books?
+    - can you pass me to a human?
+    - can i talk to a human, please
+
+- intent: out_of_scope/ask_about_museum
+  examples: |
+    - where is the Exploratorium located?
+    - what is your address?
+    - where are you at?
+    - what's your location?
+    - where is the museum?
+    - how do I get to the museum?
+    - do you have parking?
+    - what are your hours?
+    - when are you open?
+    - what are the museums's operational hours?
+    - what is the cost of admission?
+    - how much does it cost to visit?
+    - what's the cost of admission?
+    - what special events are coming up?
+    - can I reserve the exploratorium for a corporate event?
+    - can I bring my dog?
+    - do you offer group discounts?
+    - can I bring my students?
+    - do you have lockers available?
+    - is there food available?
+    - who is your featured artist?
+    - how do I purchase a membership?
+    - how much does a membership cost?
+    - do you offer a family membership?
+    - what sorts of memberships are available?
+    - what happens at After Dark?
+    - is After Dark every thursday?
+    - can I bring my kids to After Dark?
+    - do you have a gift shop?
+    - what are the gift shop hours?
+    - when was the museum founded?
+    - where is the original location of the Exploratorium?
+    - how old is the museum?
+    - what is the museum's history?
+    - who founded the Exploratorium?
+    - does the museum have any special events?
+    - can you show me a map of the museum?
+    - where are the galleries located?
+    - what is the mission of the exploratorium?

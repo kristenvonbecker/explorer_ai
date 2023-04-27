@@ -8,6 +8,7 @@ reload(articles)
 reload(exhibits)
 
 
+
 def get_article_title_matches(subject, threshold=75, scorer=fuzz.WRatio):
     matches = process.extract(subject, articles.title_aliases, scorer=scorer, limit=5)
     matches.sort(key=lambda item: item[1], reverse=True)
