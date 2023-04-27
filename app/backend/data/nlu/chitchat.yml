@@ -39,6 +39,18 @@ nlu:
     - goodevening
     - howdy
     - what's up?
+    - hey there, my name is [PERSON](PERSON)!
+    - hi, I'm [PERSON](PERSON)
+    - my name is [PERSON](PERSON)
+    - people call me [PERSON](PERSON)
+    - hello, people call me [PERSON](PERSON)
+    - hi, people call me [PERSON](PERSON)
+    - good morning, my name is [PERSON](PERSON)
+    - hello there, this is [PERSON](PERSON)
+    - greetings, people call me [PERSON](PERSON)
+    - hi! you can call me [PERSON](PERSON)
+    - hey there. I call myself [PERSON](PERSON)
+    - please call me [PERSON](PERSON)
 
 - intent: chitchat/ask_mood
   examples: |
@@ -46,6 +58,9 @@ nlu:
     - how are you doing today?
     - how's it going?
     - are you well?
+    - what sort of mood are you in?
+    - how's your mood?
+    - are you doing well?
     - how are things?
     - I hope you are well
     - how are things?
@@ -55,6 +70,12 @@ nlu:
   examples: |
     - hey, how's it going?
     - hi, how are you?
+    - hi there, how are you doing?
+    - hey, how are things?
+    - hey, how are you doing?
+    - howdy, what's up?
+    - hi, I hope you are doing well
+    - hello, I hope things are well
     - hello, how are you today?
     - hey there! how are things going?
 
@@ -92,6 +113,10 @@ nlu:
     - thanks, see you later
     - I appreciate your help. Goodbye!
     - thanks a lot, i gotta go
+    - thanks you, bye bye.
+    - thanks again, goodbye!
+    - thanks, bye
+    - thank you, goodbye
     - okay, thanks, bye!
 
 - intent: chitchat/thanks
@@ -114,8 +139,8 @@ nlu:
     - many thanks
     - i owe you
     - thx
-    - kthx
     - ty
+    - thanks again
 
 - intent: chitchat/bot_challenge
   examples: |
@@ -148,40 +173,20 @@ nlu:
     - hi, what's your name?
     - hello, who am I speaking with?
     - hi, who goes there?
+    - hello, who is this?
+    - hi, who are you?
+    - hey, what's your name?
+    - greetings, who am i speaking with?
     - hey there, who are you?
     - hey, are you a human?
-
-- intent: chitchat/ask_what_can_you_do
-  examples: |
-    - what sorts of questions can you answer?
-    - what can you do?
-    - what can i ask you?
-    - what are you trained to do?
-    - what questions do you understand?
-    - what tasks can you perform?
-    - what is your specialty?
-    - what is your job?
-    - what kinds of things can you do?
-    - what knowledge do you have?
-    - what can you help me with?
-    - what am i allowed to ask you?
-    - what do you know how to do?
-
-- intent: chitchat/ask_how_learn
-  examples: |
-    - how did you get so smart?
-    - how do you learn?
-    - how did you know that?
-    - how were you trained?
-    - how do you know so much?
-    - where do you get your knowledge?
-    - where do you get your information?
-    - what are your sources of knowledge?
+    - hello, please introduce yourself.
+    - hi, what are you called?
+    - hey, what are you?
 
 - intent: chitchat/very_cool
   examples: |
     - that's so cool!
-    - I really like that fact
+    - I really like that
     - I think that's awesome
     - wow, I had no idea, so cool
     - that's awesome
@@ -195,13 +200,12 @@ nlu:
     - i just learned something new
     - very informative
     - super cool
+    - awesome
+    - cool
     - wow, that's fascinating
     - that is so amazing
     - very awesome
-    - i think that's so neat
     - love that
     - love it
-    - i really like that idea
-    - that's a great concept
-    - I just love the idea
-    - I'm a big fan
+    - that's great!
+    - wow, who knew?!

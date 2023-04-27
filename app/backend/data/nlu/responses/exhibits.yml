@@ -1,0 +1,7 @@
+version: '3.1'
+
+responses:
+  utter_which_exhibit:
+    - text: Which exhibit are you referring to?
+  utter_unknown_exhibit:
+  - text: I'm sorry, but I don't recognize an exhibit called {exhibit_alias}.

@@ -1,0 +1,69 @@
+version: "3.1"
+
+nlu:
+
+- intent: faq/ask_what_can_you_do
+  examples: |
+    - what sorts of questions can you answer?
+    - what can you do?
+    - what can i ask you?
+    - what are you trained to do?
+    - what questions do you understand?
+    - what tasks can you perform?
+    - what is your specialty?
+    - what is your job?
+    - what do you do?
+    - what should I ask you?
+    - tell me the things that you do.
+    - tell me what you're good at.
+    - give me examples of questions I can ask you.
+    - what kinds of things can you do?
+    - what knowledge do you have?
+    - what can you help me with?
+    - what am i allowed to ask you?
+    - what do you know how to do?
+
+- intent: faq/ask_who_teacher
+  examples: |
+    - who is training you?
+    - what company are you trained by?
+    - who invented you?
+    - what organization made you?
+    - who is your teacher?
+    - who made you?
+    - who is the human behind the bot?
+    - what person trained you?
+    - what is the name of the person who designed you?
+    - who programmed you?
+    - who made you?
+
+- intent: faq/ask_how_learn
+  examples: |
+    - how did you get so smart?
+    - how do you learn?
+    - how did you know that?
+    - how in the world did you know what?
+    - what did you do to get so smart?
+    - how do you know these things?
+    - why do you know so much?
+    - how did you learn all of these things?
+    - how were you trained?
+    - how do you know so much?
+    - where do you get your knowledge?
+    - where do you get your information?
+    - what are your sources of knowledge?
+
+- intent: faq/ask_collecting_data
+  examples: |
+    - are you recording this conversation?
+    - are you saving data?
+    - are you using user data?
+    - are you using my data?
+    - how are you using this conversation?
+    - do you save this conversation?
+    - will you remember this conversation?
+    - will you be trained on our conversation?
+    - do you learn from your mistakes?
+    - can you learn from past conversations?
+    - do you save conversations?
+    - will you keep a record of this conversation?
