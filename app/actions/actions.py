@@ -10,8 +10,6 @@ import random
 
 import scripts
 from knowledgebase import articles, exhibits
-# from actions import scripts
-# from actions.knowledgebase import articles, exhibits
 
 from importlib import reload
 reload(scripts)

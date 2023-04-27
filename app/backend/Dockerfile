@@ -1,4 +1,4 @@
-FROM rasa/rasa:3.3.9-spacy-en
+FROM rasa/rasa:3.3.1-spacy-en
 
 WORKDIR /app
 
