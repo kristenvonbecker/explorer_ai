@@ -4,7 +4,6 @@ WORKDIR /app
 
 USER root
 
-COPY ./models /app/models
 COPY ./data /app/data
 COPY . /app
 
