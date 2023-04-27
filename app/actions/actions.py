@@ -8,8 +8,10 @@ from typing import Any, Text, Dict, List
 import logging
 import random
 
-from actions import scripts
-from actions.knowledgebase import articles, exhibits
+import scripts
+from knowledgebase import articles, exhibits
+# from actions import scripts
+# from actions.knowledgebase import articles, exhibits
 
 from importlib import reload
 reload(scripts)
