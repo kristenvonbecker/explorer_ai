@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!--    <link rel="icon" type="image/x-icon" href="favicon.ico"/>-->
     <title>Explorer AI</title>
     <style>
@@ -37,7 +38,7 @@
         }
 
         body {
-            line-height: 1;
+            line-height: 1.25;
         }
 
         ol, ul {
@@ -72,14 +73,23 @@
             --darker-green-color: #00988c;
             font-family: Roboto, sans-serif;
             background-color: var(--yellow-color);
+            font-size: 1rem;
+        }
+
+        .title {
+            font-size: 1.8rem;
+        }
+
+        .info {
+            font-size: 0.8rem;
         }
 
         #form {
             padding: 0.25rem;
             position: fixed;
-            bottom: 0;
             left: 0;
             right: 0;
+            bottom: calc(2em + 16px);
             display: flex;
             height: 3rem;
             box-sizing: border-box;
@@ -120,7 +130,10 @@
         #messages {
             display: flex;
             flex-direction: column;
-            padding: 10px 10px 60px 10px;
+            padding-top: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: calc(10px + 3rem + 2em + 16px);
         }
 
         .message {
@@ -152,12 +165,16 @@
             padding: 12px;
         }
 
-        .title {
-            font-size: 40px;
-        }
-
-        .info {
-            font-size: 18px;
+        .footer {
+            background-color: var(--blue-color);
+            color: var(--black-color);
+            text-align: center;
+            padding: 8px;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            min-height: 2em;
         }
 
         .quick-replies {
@@ -172,23 +189,25 @@
   <body>
     <header class="header">
       <p class="title">Chat with Explorer AI!</p>
-      <p class="info">
-        Visit
-        <a href="https://exploratorium.edu" target="_blank">
-            exploratorium.edu</a>
-        for information about the Exploratorium and its exhibits.
-      </p>
-      <p class="info">
-        To learn more about Explorer AI, see the project's
-        <a href="https://github.com/kristenvonbecker/explorer_ai" target="_blank">
-            GitHub repository</a>.
-      </p>
     </header>
     <div id="messages"></div>
     <form id="form">
       <input id="message-input" autocomplete="off" autofocus/>
       <button class="button">Send</button>
     </form>
+    <footer class="footer">
+      <p class="info">
+        Visit
+        <a href="https://exploratorium.edu" target="_blank">
+            exploratorium.edu</a>
+        for info about the Exploratorium.
+      </p>
+      <p class="info">
+        To learn about Explorer AI, see the project's
+        <a href="https://github.com/kristenvonbecker/explorer_ai" target="_blank">
+            GitHub repo</a>.
+      </p>
+    </footer>
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.2/socket.io.js"
             integrity="sha512-YybopSVjZU0fe8TY4YDuQbP5bhwpGBE/T6eBUEZ0usM72IWBfWrgVI13qfX4V2A/W7Hdqnm7PIOYOwP9YHnICw=="
