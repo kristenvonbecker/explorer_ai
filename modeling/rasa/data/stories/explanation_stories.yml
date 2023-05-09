@@ -11,7 +11,7 @@ stories:
     - intent: ask_for_explanation
       entities:
         - subject: "radiation"
-    - action: action_get_article_match_ids
+    - action: action_get_article_matches
     - slot_was_set:
         - matches_available: false
     - action: utter_found_nothing
@@ -23,7 +23,7 @@ stories:
     - intent: ask_for_explanation
       entities:
         - subject: "photosynthesis"
-    - action: action_get_article_match_ids
+    - action: action_get_article_matches
     - slot_was_set:
         - matches_available: false
     - action: utter_found_nothing
@@ -39,7 +39,7 @@ stories:
     - intent: ask_for_explanation
       entities:
         - subject: "cooperation"
-    - action: action_get_article_match_ids
+    - action: action_get_article_matches
     - slot_was_set:
         - matches_available: true
     - action: action_give_explanation
@@ -51,7 +51,7 @@ stories:
     - intent: ask_for_explanation
       entities:
         - subject: "transverse waves"
-    - action: action_get_article_match_ids
+    - action: action_get_article_matches
     - slot_was_set:
         - matches_available: true
     - action: action_give_explanation

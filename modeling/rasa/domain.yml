@@ -61,7 +61,13 @@ slots:
       entity: subject
       intent: ask_related_exhibit
     influence_conversation: true
-  match_ids:
+  article_matches:
+    type: list
+    initial_value: []
+    mappings:
+    - type: custom
+    influence_conversation: false
+  exhibit_matches:
     type: list
     initial_value: []
     mappings:
@@ -107,7 +113,7 @@ slots:
 
 actions:
 - action_validate_slot_mappings
-- action_get_article_match_ids
+- action_get_article_matches
 - action_get_exhibit_match_ids
 - action_give_explanation
 - action_reset_explanation_slots

@@ -16,12 +16,12 @@ rules:
         - subject: subject
   steps:
     - intent: ask_for_explanation
-    - action: action_get_article_match_ids
+    - action: action_get_article_matches
   wait_for_user_input: false
 
 - rule: when no matches are found, inform user and ask what's next
   steps:
-    - action: action_get_article_match_ids
+    - action: action_get_article_matches
     - slot_was_set:
         - matches_available: false
     - action: utter_found_nothing
@@ -30,7 +30,7 @@ rules:
 
 - rule: when matches are found, give explanation and ask for confirmation
   steps:
-    - action: action_get_article_match_ids
+    - action: action_get_article_matches
     - slot_was_set:
         - matches_available: true
     - action: action_give_explanation
