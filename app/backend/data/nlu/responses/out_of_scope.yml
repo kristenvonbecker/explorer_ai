@@ -1,7 +1,0 @@
-version: '3.1'
-
-responses:
-  utter_out_of_scope/general:
-  - text: I don't know how to respond to that. I'm trained to answer questions about the Exploratorium's exhibits and the concepts that they illustrate.
-  utter_out_of_scope/ask_about_museum:
-  - text: I'm not saving my conversations right, but that will probably change in the future. I'd like to be able to learn from my mistakes!

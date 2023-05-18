@@ -8,13 +8,8 @@ from typing import Any, Text, Dict, List
 import logging
 import random
 
-import scripts
-from knowledgebase import articles, exhibits
+from scripts import explanation_scripts, exhibit_scripts
 
-from importlib import reload
-reload(scripts)
-reload(articles)
-reload(exhibits)
 
 logger = logging.getLogger(__name__)
 
@@ -56,9 +51,9 @@ class ValidateSlots(ValidationAction):
             return {"name_given": False}
 
 
-class ActionGetArticleMatchIds(Action):
+class ActionGetArticleMatches(Action):
     def name(self) -> Text:
-        return "action_get_article_match_ids"
+        return "action_get_article_matches"
 
     def run(self,
             dispatcher: CollectingDispatcher,
@@ -67,18 +62,12 @@ class ActionGetArticleMatchIds(Action):
         subject = tracker.get_slot("subject")
         matches = []
         if subject:
-            matches += scripts.get_article_title_matches(subject)
-        match_ids = []
-        for match in matches:
-            for article_id, aliases in articles.alias_id_lookup.items():
-                if match in aliases:
-                    match_ids.append(article_id)
-        match_ids = list(set(match_ids))
-        matches_available = True if match_ids else False
+            matches += explanation_scripts.get_article_matches(subject)
+        matches_available = True if matches else False
         return [
             SlotSet("exhibit_id", None),
             SlotSet("num_tries", 0),
-            SlotSet("match_ids", match_ids),
+            SlotSet("article_matches", matches),
             SlotSet("matches_available", matches_available)
         ]
 
@@ -94,16 +83,16 @@ class ActionGetExhibitMatchIds(Action):
         exhibit = tracker.get_slot("exhibit_alias")
         alias_matches = []
         if exhibit:
-            alias_matches += scripts.get_exhibit_alias_matches(exhibit)
+            alias_matches += exhibit_scripts.get_exhibit_alias_matches(exhibit)
         match_ids = []
         for alias in alias_matches:
-            match_ids += scripts.get_exhibit_ids(alias)
+            match_ids += exhibit_scripts.get_exhibit_ids(alias)
         match_ids = list(set(match_ids))
         matches_available = True if match_ids else False
         return [
             SlotSet("exhibit_id", None),
             SlotSet("num_tries", 0),
-            SlotSet("match_ids", match_ids),
+            SlotSet("exhibit_matches", match_ids),
             SlotSet("matches_available", matches_available)
         ]
 
@@ -118,21 +107,22 @@ class ActionGiveExplanation(Action):
             domain: DomainDict
             ) -> List[Dict[Text, Any]]:
         subject = tracker.get_slot("subject")
-        match_ids = tracker.get_slot("match_ids")
+        article_matches = tracker.get_slot("article_matches")
         matches_available = tracker.get_slot("matches_available")
         num_tries = int(tracker.get_slot("num_tries"))
         if not subject:
             dispatcher.utter_message(response="utter_what_subject")
             return []
         if matches_available:
-            explanation = scripts.get_article_text(match_ids[num_tries])
+            [next_title, next_id] = article_matches[num_tries]
+            explanation = explanation_scripts.get_article_text(article_id=next_id, title=next_title)
             if num_tries == 0:
                 dispatcher.utter_message(response="utter_found_something")
             else:
                 dispatcher.utter_message(response="utter_found_something_else")
             dispatcher.utter_message(text=explanation)
             num_tries += 1
-            matches_available = (len(match_ids) > num_tries)
+            matches_available = (len(article_matches) > num_tries)
             return [
                 SlotSet("subject", subject),
                 SlotSet("num_tries", num_tries),
@@ -142,7 +132,7 @@ class ActionGiveExplanation(Action):
             dispatcher.utter_message(response="utter_found_nothing_else")
             return [
                 SlotSet("subject", None),
-                SlotSet("match_ids", []),
+                SlotSet("article_matches", []),
                 SlotSet("num_tries", 0)
             ]
 
@@ -157,14 +147,14 @@ class ActionVerifyExhibit(Action):
             domain: DomainDict
             ) -> List[Dict[Text, Any]]:
         alias = tracker.get_slot("exhibit_alias")
-        match_ids = tracker.get_slot("match_ids")
+        match_ids = tracker.get_slot("exhibit_matches")
         matches_available = tracker.get_slot("matches_available")
         num_tries = int(tracker.get_slot("num_tries"))
         if not alias:
             dispatcher.utter_message(response="utter_which_exhibit")
             return []
         if matches_available:
-            exhibit_name = scripts.get_exhibit_name(match_ids[num_tries])
+            exhibit_name = exhibit_scripts.get_exhibit_name(match_ids[num_tries])
             msg = f"Are you referring to the exhibit called {exhibit_name}?"
             dispatcher.utter_message(text=msg)
             num_tries += 1
@@ -178,7 +168,7 @@ class ActionVerifyExhibit(Action):
             dispatcher.utter_message(response="utter_unknown_exhibit")
             return [
                 SlotSet("exhibit_alias", None),
-                SlotSet("match_ids", []),
+                SlotSet("exhibit_matches", []),
                 SlotSet("num_tries", 0)
             ]
 
@@ -193,7 +183,7 @@ class ActionMapExhibitId(Action):
         tracker: Tracker,
         domain: DomainDict,
     ) -> List[Dict[Text, Any]]:
-        match_ids = tracker.get_slot("match_ids")
+        match_ids = tracker.get_slot("exhibit_matches")
         num_tries = tracker.get_slot("num_tries") - 1
         exhibit_id = match_ids[num_tries]
         return [SlotSet("exhibit_id", exhibit_id)]
@@ -208,7 +198,7 @@ class ActionUtterFaveExhibit(Action):
             tracker: Tracker,
             domain: DomainDict
             ) -> List[Dict[Text, Any]]:
-        exhibit_id, exhibit_name, fun_fact = scripts.get_fave_exhibit()
+        exhibit_id, exhibit_name, fun_fact = exhibit_scripts.get_fave_exhibit()
         if fun_fact:
             fun_fact_alt = fun_fact[0].lower() + fun_fact[1:].rstrip(".")
             msgs = [
@@ -238,7 +228,7 @@ class ActionUtterExhibitResponse(Action):
         domain: DomainDict,
     ) -> List[Dict[Text, Any]]:
         exhibit_id = tracker.get_slot("exhibit_id")
-        exhibit_name = scripts.get_exhibit_name(exhibit_id)
+        exhibit_name = exhibit_scripts.get_exhibit_name(exhibit_id)
         events = list(reversed(tracker.events))
         user_msgs = [event for event in events if event["event"] == "user"]
         last_intents = [user_msgs[n]["parse_data"]["intent"]["name"] for n in range(len(user_msgs))]
@@ -247,7 +237,7 @@ class ActionUtterExhibitResponse(Action):
             dispatcher.utter_message(response="utter_which_exhibit")
             return []
         elif last_exhibit_intent == "ask_where_exhibit":
-            location, location_code = scripts.get_exhibit_location(exhibit_id)
+            location, location_code = exhibit_scripts.get_exhibit_location(exhibit_id)
             if location == "NOT ON VIEW":
                 msg = f"{exhibit_name} is not currently on view."
             else:
@@ -255,7 +245,7 @@ class ActionUtterExhibitResponse(Action):
             dispatcher.utter_message(text=msg)
             return[]
         elif last_exhibit_intent == "ask_about_exhibit":
-            short_sum, medium_sum, fun_facts = scripts.get_about_exhibit(exhibit_id)
+            short_sum, medium_sum, fun_facts = exhibit_scripts.get_about_exhibit(exhibit_id)
             if short_sum:
                 dispatcher.utter_message(text=short_sum)
             elif medium_sum:
@@ -268,7 +258,7 @@ class ActionUtterExhibitResponse(Action):
                 dispatcher.utter_message(text=msg)
             return []
         elif last_exhibit_intent == "ask_exhibit_creator":
-            creators = scripts.get_exhibit_creator(exhibit_id)
+            creators = get_exhibit_creator(exhibit_id)
             if not creators:
                 msg = f"I'm sorry, but I don't know who created {exhibit_name}."
                 dispatcher.utter_message(text=msg)
@@ -285,7 +275,7 @@ class ActionUtterExhibitResponse(Action):
                 dispatcher.utter_message(text=msg)
             return []
         elif last_exhibit_intent == "ask_exhibit_date":
-            year = scripts.get_exhibit_date(exhibit_id)
+            year = exhibit_scripts.get_exhibit_date(exhibit_id)
             if not year:
                 msg = f"I'm sorry, but I'm not sure when {exhibit_name} was added as an exhibit."
                 dispatcher.utter_message(text=msg)
@@ -294,13 +284,13 @@ class ActionUtterExhibitResponse(Action):
                 dispatcher.utter_message(text=msg)
             return []
         elif last_exhibit_intent == "ask_related_exhibit":
-            related_ids = scripts.get_related_exhibit(exhibit_id)
+            related_ids = exhibit_scripts.get_related_exhibit(exhibit_id)
             if not related_ids:
                 msg = f"I'm sorry, but I'm not sure which exhibits are related to {exhibit_name}."
                 dispatcher.utter_message(text=msg)
             else:
                 related_id = random.choice(related_ids)
-                related_name = scripts.get_exhibit_name(related_id)
+                related_name = exhibit_scripts.get_exhibit_name(related_id)
                 msg = f"{related_name} is an exhibit that is related to {exhibit_name}."
                 dispatcher.utter_message(text=msg)
             return []
@@ -341,7 +331,7 @@ class ActionResetExhibitSlots(Action):
     def run(self, dispatcher, tracker, domain) -> List[Dict[Text, Any]]:
         return [
             SlotSet("exhibit_alias", None),
-            SlotSet("match_ids", []),
+            SlotSet("exhibit_matches", []),
             SlotSet("matches_available", False),
             SlotSet("num_tries", 0)
         ]
@@ -354,7 +344,7 @@ class ActionResetExplanationSlots(Action):
     def run(self, dispatcher, tracker, domain) -> List[Dict[Text, Any]]:
         return [
             SlotSet("subject", None),
-            SlotSet("match_ids", []),
+            SlotSet("article_matches", []),
             SlotSet("matches_available", False),
             SlotSet("num_tries", 0)
         ]

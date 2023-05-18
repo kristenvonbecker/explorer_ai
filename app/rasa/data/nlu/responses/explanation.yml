@@ -1,0 +1,15 @@
+version: '3.1'
+
+responses:
+  utter_what_subject:
+  - text: Which subject would you like to know more about?
+  - text: Which concept would you like help understanding?
+  - text: What can I explain for you?
+  utter_found_nothing:
+  - text: Sorry, but I wasn't able to find any information about {subject}.
+  utter_found_nothing_else:
+  - text: Sorry, but I wasn't able to find any more information about {subject}.
+  utter_found_something:
+  - text: Here's something I found in the Encyclopedia Britannica.
+  utter_found_something_else:
+  - text: Here's something else I found.

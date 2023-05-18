@@ -5,16 +5,12 @@ services:
   rasa_server:
     container_name: "rasa_server"
     build:
-      context: backend
+      context: rasa
     user: root
     ports:
       - "5005:5005"
     expose:
       - 5005
-    volumes:
-      - ./backend/data:/app/data
-      - ./backend:/app
-      - models:/app/models
 
   action_server:
     container_name: "action_server"
@@ -24,8 +20,6 @@ services:
       - "5055:5055"
     expose:
       - 5055
-    volumes:
-      - ./actions:/app
 
   web_server:
     container_name: "web_server"
@@ -51,6 +45,3 @@ services:
     volumes:
       - ./certbot/www:/var/www/cerbot:rw
       - ./certbot/conf:/etc/letsencrypt:rw
-
-volumes:
-  models:

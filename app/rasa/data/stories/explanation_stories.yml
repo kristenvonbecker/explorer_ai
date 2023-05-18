@@ -1,0 +1,89 @@
+version: "3.1"
+
+stories:
+
+- story: explanation requested, no results available (path 1)
+  steps:
+    - intent: ask_for_explanation
+      entities:
+        - subject: null
+    - action: utter_what_subject
+    - intent: ask_for_explanation
+      entities:
+        - subject: "radiation"
+    - action: action_get_article_matches
+    - slot_was_set:
+        - matches_available: false
+    - action: utter_found_nothing
+    - action: action_reset_subject
+    - action: utter_how_else_help
+
+- story: explanation requested, no results available (path 2)
+  steps:
+    - intent: ask_for_explanation
+      entities:
+        - subject: "photosynthesis"
+    - action: action_get_article_matches
+    - slot_was_set:
+        - matches_available: false
+    - action: utter_found_nothing
+    - action: action_reset_subject
+    - action: utter_how_else_help
+
+- story: explanation requested, explanation given (path 1)
+  steps:
+    - intent: ask_for_explanation
+      entities:
+        - subject: null
+    - action: utter_what_subject
+    - intent: ask_for_explanation
+      entities:
+        - subject: "cooperation"
+    - action: action_get_article_matches
+    - slot_was_set:
+        - matches_available: true
+    - action: action_give_explanation
+    - action: utter_confirm_explanation
+    - checkpoint: check_asked_confirm_explanation
+
+- story: explanation requested, explanation given (path 2)
+  steps:
+    - intent: ask_for_explanation
+      entities:
+        - subject: "transverse waves"
+    - action: action_get_article_matches
+    - slot_was_set:
+        - matches_available: true
+    - action: action_give_explanation
+    - action: utter_confirm_explanation
+    - checkpoint: check_asked_confirm_explanation
+
+- story: user affirms explanation
+  steps:
+    - checkpoint: check_asked_confirm_explanation
+    - intent: affirm
+    - action: action_reset_explanation_slots
+    - action: utter_great
+    - action: utter_how_else_help
+
+- story: user denies explanation, another given
+  steps:
+    - checkpoint: check_asked_confirm_explanation
+    - intent: deny
+    - action: utter_thanks_for_feedback
+    - action: action_give_explanation
+    - slot_was_set:
+        - subject: subject
+    - action: utter_confirm_explanation
+    - checkpoint: check_asked_confirm_explanation
+
+- story: user denies explanation, no more available
+  steps:
+    - checkpoint: check_asked_confirm_explanation
+    - intent: deny
+    - action: utter_thanks_for_feedback
+    - action: action_give_explanation
+    - slot_was_set:
+        - subject: null
+    - action: utter_how_else_help
+
