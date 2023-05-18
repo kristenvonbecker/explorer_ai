@@ -7,9 +7,6 @@ USER root
 COPY ./data /app/data
 COPY . /app
 
-RUN pip install -U --no-cache-dir pip setuptools wheel && \
-    pip install -U spacy && \
-    python -m spacy download en_core_web_md && \
-    rasa train
+RUN rasa train
 
 ENTRYPOINT ["rasa", "run", "-m", "models", "--enable-api", "--cors", "*", "--debug"]
