@@ -240,8 +240,12 @@ class ActionUtterExhibitResponse(Action):
             location, location_code = exhibit_scripts.get_exhibit_location(exhibit_id)
             if location == "NOT ON VIEW":
                 msg = f"{exhibit_name} is not currently on view."
-            else:
+            elif location:
                 msg = f"{exhibit_name} is located in {location}."
+            elif location_code:
+                msg = f"{exhibit_name} is located in {location_code}."
+            else:
+                msg = f"Sorry, but I don't know where {exhibit_name} is located."
             dispatcher.utter_message(text=msg)
             return[]
         elif last_exhibit_intent == "ask_about_exhibit":
@@ -258,7 +262,7 @@ class ActionUtterExhibitResponse(Action):
                 dispatcher.utter_message(text=msg)
             return []
         elif last_exhibit_intent == "ask_exhibit_creator":
-            creators = get_exhibit_creator(exhibit_id)
+            creators = exhibit_scripts.get_exhibit_creator(exhibit_id)
             if not creators:
                 msg = f"I'm sorry, but I don't know who created {exhibit_name}."
                 dispatcher.utter_message(text=msg)
