@@ -1,17 +1,15 @@
 # Explorer AI
 
-🤖 A conversational chatbot which is learning to assist and educate visitors to 
+🤖 A conversational chatbot designed to assist and educate visitors to 
 [The Exploratorium](https://www.exploratorium.edu/about-us), "a public learning laboratory exploring the world through 
-science, art, and human perception." 
-
-**<span style="color:red">Chat with Explorer AI in your web brower!</span>  [explorer-ai.chat](https://explorer-ai.chat)**
+science, art, and human perception."
 
 ---
 
 ### Introduction
 
-Explorer AI is trained to function as a virtual docent to the Exploratorium in San Francisco. That is, it is able to 
-answer basic questions that 
+Explorer AI is trained to function as a virtual docent for the Exploratorium in San Francisco. The idea that it would 
+be able to answer basic questions that 
 [a human docent at the Exploratorium](https://www.exploratorium.edu/exhibits/human-phenomena-explainer-station) might 
 be asked by a patron. In particular, Explorer AI is trained to respond to the following categories of user intents:
   - Get an explanation for a concept or phenomena which is illustrated by some exhibit at the Exporatorium
@@ -20,9 +18,9 @@ be asked by a patron. In particular, Explorer AI is trained to respond to the fo
     - Current location (e.g. gallery)
     - Names of creator(s)
     - Year of creation
-  - Get exhibit recommendations (randomly, or given certain criteria)
+  - Get exhibit recommendations
 
-![Screenshot of Explorer AI interface](images/screenshot_1.png)
+![Screenshot of Explorer AI interface](branding/images/screenshot_1.png)
 
 ---
 
@@ -63,8 +61,10 @@ one of the exhibit's keywords. Code related to the construction of the subject-m
 
 ### Deployment
 
-Explorer AI is currently deployed as a [simple web app](https://explorer-ai.chat) running in a network of Docker 
-containers hosted on a Google Cloud E2 (Ubuntu 18.04) instance. The application network consists of four processes: 
+Explorer AI was deployed as a simple web-app running in a network of Docker 
+containers hosted on a Google Cloud E2 (Ubuntu 18.04) instance.
+(Note that Explorer AI was recently taken offline due to the unsustainable cost of cloud computing.)
+The application network consists of four processes: 
 
 - The backend server (referred to often as `rasa_server` in the code and configurations), which performs language 
 understanding and prediction tasks. The related code is found at `app/backend`.
@@ -78,24 +78,3 @@ certificate authority. Code and configs for the web server, as well as static co
 - A process for automating the renewal of SSL certificates using [Certbot](https://certbot.eff.org/). The configurations
 for this process can be found in `app/docker-compose.yml` (along with the rest of the network's Docker configuration).
 
----
-
-### Known issues
-
-- The bot frequenty fails to respond to a user's message (it listens selectively).
-- User intent is often misclassified by the bot (it has a hard time understanding).
-
-To provide feedback about your experience with Explorer AI, please fill out 
-[this form](https://forms.gle/9Y4LFogLvzEKquqL9).
-
----
-
-### Future work
-
-- Install the [Rasa X](https://rasa.com/docs/rasa-enterprise/) toolkit which will enable Explorer AI to learn from
-past conversations with users.
-- Train Explorer AI on a broader collection of user intents, including general questions about the Exploratorium, as 
-well as questions related to the museum's many creators and artists.
-- Improve Explorer AI's dialog management through the incorporation of "stories" and expanded interactive training.
-- Integrate graphics and buttons (aka quick replies) into Explorer AI's enabled responses.
-- Add support for mobile devices to Explorer AI's application interface.
