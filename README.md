@@ -20,7 +20,7 @@ be asked by a patron. In particular, Explorer AI is trained to respond to the fo
     - Year of creation
   - Get exhibit recommendations
 
-![Screenshot of Explorer AI interface](branding/images/screenshot_1.png)
+![Screenshot of Explorer AI interface](images/screenshot_1.png)
 
 ---
 
