@@ -36,9 +36,9 @@ ranging from straightforward if-then rules to the implementation of transformers
 The configuration of [the model's 
 training pipeline](https://rasa.com/docs/rasa/tuning-your-model/) is located in `modeling/rasa/config.yml`. 
 The conversational training data used by the [NLU side of the model](https://rasa.com/docs/rasa/nlu-training-data/) 
-can be found in `modeling/rasa/data/nlu`, and the collection of rules learned by the bot are located in 
-`modeling/rasa/data/rules`. Finally, Explorer AI's "domain" (a checklist of everything it needs to know) is located in 
-the file `modeling/rasa/domain.yml`. 
+can be found in `chatbot/rasa/data/nlu`, and the collection of rules learned by the bot are located in 
+`chatbot/rasa/data/rules`. Finally, Explorer AI's "domain" (a checklist of everything it needs to know) is located in 
+the file `chatbot/rasa/domain.yml`. 
 
 ### Data
 
